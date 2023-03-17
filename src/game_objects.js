@@ -157,6 +157,7 @@ export class Mushroom extends GameObject {
     })
     this.row = 0
     this.col = 2
+
   }
 }
 
