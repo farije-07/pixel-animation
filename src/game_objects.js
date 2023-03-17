@@ -1,10 +1,21 @@
 import EventHandler, {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
-import Game, { TileRegistry } from "./game.js"
 import { findAndRemoveFromList } from "./utils.js"
+import TileRegistry from "./tile_registry.js"
+import CollisionDetector from "./collision_detector.js"
+import Game from "./game.js"
 
-export class GameObject extends EventTarget {
+
+/**
+ * Dies ist die Basisklasse für alle Spiel-Objekte.
+ * 
+ * Wenn ein spezialisiertes Spiel-Objekt erzeugt wird, dann soll es 
+ * immer diese Klasse erweitern. Wenn die Funktionen von der Basisklasse
+ * überschrieben werden, sollten diese immer zuerst mit `super.function()` 
+ * aufgerufen werden, so das die eigentliche Funktionalität der Spiel-Objekte
+ * erhalten bleibt.
+ */
+export class GameObject {
   constructor(x, y, options = {sheet, layer: "background", collisionTags: []}) {
-    super()
     this.sheet = options.sheet
     this.tileSize = 32
     this.x = x * this.tileSize
@@ -16,10 +27,15 @@ export class GameObject extends EventTarget {
     TileRegistry.layers[this.layer].push(this)
     this.collisionTags = options.collisionTags
     this.collisionTags.forEach(tag => {
-      Game.CD.layers[tag].push(this)
+      CollisionDetector.layers[tag].push(this)
     })
   }
 
+  /**
+   * Zeichnet das Spiel-Objekt auf das Canvas. Das Spiel-Objekt
+   * kennt dabei seine Position und welches Bild gezeichnet werden soll.
+   * @param {CanvasRenderingContext2D} ctx Das Canvas, worauf das Spiel-Objekt gezeichnet werden soll.
+   */
   draw(ctx) {
     ctx.drawImage(
       this.sheet,
@@ -28,13 +44,24 @@ export class GameObject extends EventTarget {
     )
   }
 
+  /**
+   * Zerstört das Spiel-Objekt und entfernt es aus dem Spiel.
+   */
   destroy() {
     findAndRemoveFromList(TileRegistry.layers[this.layer], this)
     this.collisionTags.forEach(tag => {
-      findAndRemoveFromList(Game.CD.layers[tag], this)
+      findAndRemoveFromList(CollisionDetector.layers[tag], this)
     })
   }
 
+  /**
+   * Berechne die Position und andere Eigenschaften des 
+   * Spiel-Objekts neu. Wie das gemacht wird, wird in den 
+   * verschieden Handlers angegeben. Ein Spiel-Objekt kann
+   * z.B. einen Gravitations-Handler haben, dieser fügt dann
+   * Gravitation für dieses Spiel-Objekt hinzu und berechnet die 
+   * y-Position des Spiel-Objekts neu.
+   */
   update(){
     this.handlers && this.handlers.runAll(this)
   }
@@ -66,6 +93,32 @@ export class Stone extends GameObject {
     })
     this.row = 0
     this.col = 1
+  }
+}
+
+export class Wall extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 3
+  }
+}
+
+export class Cave extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["cave"]
+    })
+    this.row = 1
+    this.col = 2
   }
 }
 
@@ -133,17 +186,13 @@ export class Player extends AnimatedGameObject {
     super(x, y, {
       sheet: img,
       layer: "player",
-      collisionTags: ["world", "pickups"]
+      collisionTags: ["world", "pickups", "cave", "forest"]
     })
     this.row = 0
     this.col = 1
     this.speed = 3
     this.handlers = new HandlerManager([
       new EventHandler(),
-      new GravityHandler({ 
-        jumpForce: -10,
-        maxGravity: 5,
-        gravityForce: 1 }),
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
@@ -162,7 +211,9 @@ export class Player extends AnimatedGameObject {
     if (ev === "KeyS") { this.move("down") }
     if (ev === "KeyA") { this.move("left") }
     if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space") { this.jump() }
+    if (ev === "Space") { 
+      Game.loadMap("maps/map-02.txt")
+    }
   }
 
   move(direction) {

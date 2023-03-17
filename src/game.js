@@ -1,53 +1,18 @@
 import Map from "./map.js"
 import CollisionDetector from "./collision_detector.js"
 import Camera from "./camera.js"
-
-export class TileRegistry {
-  static instance = null
-  static layers = {
-      background: [],
-      item: [],
-      player: [],
-      world: [],
-    }
-
-  static getInstance() {
-    if (TileRegistry.instance == null) {
-      TileRegistry.instance = TileRegistry.createInstance()
-    }
-    return TileRegistry.instance
-  }
-
-  static createInstance() {
-    let object = new TileRegistry()
-    return object
-  }
-
-  static drawAllTiles(ctx) {
-    Object.entries(TileRegistry.layers).forEach(([_, layer]) => {
-      layer.forEach(tile => {
-        tile.draw(ctx)
-      })
-    })
-  }
-
-  static updateAllTiles() {
-    Object.entries(TileRegistry.layers).forEach(([_, layer]) => {
-      layer.forEach(tile => {
-        tile.update()
-      })
-    })
-  }
-}
+import TileRegistry from "./tile_registry.js"
 
 
-
+/**
+ * Diese Klasse enthält die globalen Variablen für das Spiel,
+ * sowie das GameLoop, welches das Spiel zeichnen soll.
+ */
 export default class Game {
 
-  static CD = new CollisionDetector()
-  static map = new Map("maps/map.txt")
-  static TileRegistry;
+  static map = null;
   static player = null;
+  static running = false;
 
   constructor() {
     this.tileSize = 32
@@ -56,22 +21,66 @@ export default class Game {
     this.canvas.height = 15 * this.tileSize
     this.ctx = this.canvas.getContext("2d")
     this.ctx.imageSmoothingEnabled = false
-    Game.TileRegistry = TileRegistry.getInstance()
+
+    Game.loadMap("maps/map-01.txt")
 
     this.camera = new Camera(this)
 
+    Game.running = false
+    window.requestAnimationFrame(this.gameLoop.bind(this))
   }
 
+  /**
+   * Startet das Spiel.
+   * 
+   * Das Spiel wird gestartet indem die Animationsschleife
+   * des Spiels aufgerufen wird.
+   */
+  static start() {
+    Game.running = true
+  }
+
+  /**
+   * Pausiert das Spiel.
+   * 
+   * Die Animationsschleife des Spiels wird unterbrochen,
+   * dadurch wird das Spiel pausiert.
+   * 
+   * Um das Spiel weiterlaufen zu lassen, muss die Methode 
+   * `start()` aufgerufen werden.
+   */
+  static pause() {
+    Game.running = false
+  }
+
+  static loadMap(mapfile) {
+      TileRegistry.clear()
+      CollisionDetector.clear()
+      Game.player = null
+      Game.map = new Map(mapfile)
+
+  }
+
+  /**
+   * Berechnet jeweils das nächste Frame für das Spiel.
+   * Die Positionen der Spiel-Objekte werden neu berechnet,
+   * die Kamera wird korrekt ausgerichtet und die 
+   * Spiel-Objekte werden neu gezeichnet.
+   */
   gameLoop() {
     
     this.camera.clearScreen()
     this.camera.nextFrame()
 
     TileRegistry.updateAllTiles()
-    Game.CD.checkCollision("all")
+    CollisionDetector.checkCollision("all")
 
     this.camera.centerObject(Game.player)
 
     TileRegistry.drawAllTiles(this.ctx)
+
+    if (Game.running === true) {
+      window.requestAnimationFrame(this.gameLoop.bind(this))
+    }
   }
 }
