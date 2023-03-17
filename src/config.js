@@ -10,7 +10,9 @@ const config = {
     "ArrowLeft": function() { Game.player2.move("left")},
     "ArrowDown": function() { Game.player2.move("down")},
     "ArrowRight": function() { Game.player2.move("right")},
+ 
   }
 }
+
 
 export default config;
