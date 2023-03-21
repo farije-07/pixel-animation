@@ -108,7 +108,7 @@ export class Wall extends GameObject {
 }
 
 export class Cave extends GameObject {
-  constructor(x, y) {
+  constructor(x, y, level) {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
@@ -117,6 +117,7 @@ export class Cave extends GameObject {
     })
     this.row = 1
     this.col = 2
+    this.level = level
   }
 }
 
