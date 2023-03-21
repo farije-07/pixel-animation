@@ -64,6 +64,13 @@ export default class Game {
       Game.player = null
       Game.map = new Map(mapfile)
 
+
+  }
+  static updateMushroom(value) {
+    const elem = document.querySelector("mushroom-counter")
+    let count = parseInt(elem.textContent)
+    elem.textContent= count + value
+
   }
 
   /**

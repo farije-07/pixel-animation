@@ -113,6 +113,7 @@ export class CollisionHandler {
     }
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
+  
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
     }
