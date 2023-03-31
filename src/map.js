@@ -23,8 +23,10 @@ export default class Map {
     if ( tileType === "t" ) { new Tree(x, y) }
     if ( tileType === "p" ) { new Mushroom(x, y) }
     if ( tileType === "w" ) { new Wall(x, y) }
-    if ( tileType === "h" ) { new Cave(x, y) }
+    if ( tileType === "h" ) { new Cave(x, y, 2) }
+    if ( tileType === "H" ) { new Cave(x, y, 1) }
     if ( tileType === "P" ) { Game.player = new Player(x, y)}
+    
   }
 
   /**

@@ -1,9 +1,7 @@
-import EventHandler, {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
+import {AnimationHandler, CollisionHandler, GravityHandler, HandlerManager} from "./event_handler.js"
 import { findAndRemoveFromList } from "./utils.js"
 import TileRegistry from "./tile_registry.js"
 import CollisionDetector from "./collision_detector.js"
-import Game from "./game.js"
-
 
 /**
  * Dies ist die Basisklasse für alle Spiel-Objekte.
@@ -110,7 +108,7 @@ export class Wall extends GameObject {
 }
 
 export class Cave extends GameObject {
-  constructor(x, y) {
+  constructor(x, y, level) {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
@@ -119,6 +117,7 @@ export class Cave extends GameObject {
     })
     this.row = 1
     this.col = 2
+    this.level = level
   }
 }
 
@@ -159,6 +158,7 @@ export class Mushroom extends GameObject {
     })
     this.row = 0
     this.col = 2
+
   }
 }
 
@@ -192,7 +192,6 @@ export class Player extends AnimatedGameObject {
     this.col = 1
     this.speed = 3
     this.handlers = new HandlerManager([
-      new EventHandler(),
       new CollisionHandler(),
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
     ])
@@ -204,16 +203,6 @@ export class Player extends AnimatedGameObject {
 
   update() {
     super.update()
-  }
-
-  handle(ev) {
-    if (ev === "KeyW") { this.move("up") }
-    if (ev === "KeyS") { this.move("down") }
-    if (ev === "KeyA") { this.move("left") }
-    if (ev === "KeyD") { this.move("right") }
-    if (ev === "Space") { 
-      Game.loadMap("maps/map-02.txt")
-    }
   }
 
   move(direction) {
