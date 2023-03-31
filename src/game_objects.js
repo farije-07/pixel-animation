@@ -189,11 +189,11 @@ export class Player extends AnimatedGameObject {
       collisionTags: ["world", "pickups", "cave", "forest"]
     })
     this.row = 0
-    this.col = 1
+    this.col = 0
     this.speed = 3
     this.handlers = new HandlerManager([
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 3})
+      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 1})
     ])
   }
 
@@ -208,16 +208,16 @@ export class Player extends AnimatedGameObject {
   move(direction) {
     if (direction === "up") {
       this.dy = this.dy + (-1) * this.speed
-      this.row = 3
+      this.row = 0
     } else if (direction === "down") {
       this.dy = this.dy + (1) * this.speed
       this.row = 0
     } else if (direction === "left") {
       this.dx = this.dx + (-1) * this.speed
-      this.row = 1
+      this.row = 0
     } else if (direction === "right") {
       this.dx = this.dx + (1) * this.speed
-      this.row = 2
+      this.row = 0
     }
   }
 }
