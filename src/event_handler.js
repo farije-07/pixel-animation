@@ -48,6 +48,7 @@ export class GravityHandler {
   }
 
   jump(gameObject) {
+  
     if (gameObject.isStanding) {
       this.gravity = this.jumpForce
       gameObject.isStanding = false
@@ -128,12 +129,14 @@ export class CollisionHandler {
       if (collidingObject.level === 1) {
         Game.loadMap("maps/map-01.txt")
       } else if (collidingObject.level === 2) {
-        Game.loadMap("maps/map-02.txt")
-      }
+        Game.loadMap ("maps/map-02.txt")
+      }else if (collidingObject.level === 3) {
+          Game.loadSideScrollingMap("maps/map-03.txt")
+      
     }
   }
 }
-
+}
 export class AnimationHandler {
   constructor(options) {
     this.frameCounter = 0

@@ -2,25 +2,13 @@ body {
     padding: 0;
     margin: 0;
     text-align: center;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     background-color:rosybrown;
 }
 
-canvas {
-    background-color: darkcyan;
-    width: min(70vh, 100vw);
-=======
-=======
->>>>>>> origin/jump3
-    background-color: rosybrown;
-}
 
 canvas {
     background-color:darkcyan;
     width: min(90vh, 100vw);
-<<<<<<< HEAD
->>>>>>> main
-=======
->>>>>>> origin/jump3
+
 }
