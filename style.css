@@ -8,7 +8,7 @@ body {
 
 
 canvas {
-    background-color:darkcyan;
+    background-color: cadetblue;
     width: min(90vh, 100vw);
 
 }

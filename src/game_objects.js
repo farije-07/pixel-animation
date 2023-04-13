@@ -66,7 +66,6 @@ export class GameObject {
 
 
 }
-
 export class Background extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -80,6 +79,8 @@ export class Background extends GameObject {
     this.col = 0
   }
 }
+
+
 
 export class Stone extends GameObject {
   constructor(x, y) {
@@ -192,7 +193,7 @@ export class Player extends AnimatedGameObject {
     this.col = 0
     this.speed = 3
     this.handlers = new HandlerManager([
-      new CollisionHandler(),
+    
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 1})
     ])
   }
