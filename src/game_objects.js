@@ -157,7 +157,7 @@ export class Mushroom extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["world"]
+      collisionTags: ["pickups"]
     })
     this.row = 0
     this.col = 2
