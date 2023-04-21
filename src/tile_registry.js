@@ -7,7 +7,10 @@ export default class TileRegistry {
       item: [],
       world: [],
       player: [],
-    }
+      boden: [] , 
+    
+  }
+  
 
   /**
    * Zeichne alle Kacheln die in dem Spiel sind auf das Canvas.
@@ -39,6 +42,7 @@ export default class TileRegistry {
       item: [],
       player: [],
       world: [],
+    
     }
   }
 
