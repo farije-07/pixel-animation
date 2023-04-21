@@ -105,6 +105,28 @@ export class Stone extends GameObject {
     this.col = 1
   }
 }
+export class Turm extends GameObject{
+constructor(x,y){
+  const turm = document.querySelector("#turm")
+  super(x,y,{
+    sheet: turm,
+    layer: "world",
+    collisionTags: ["world"]
+  })
+  this.row  = 0
+  this.col = 0
+  this.tileSize = 128
+}
+
+// draw(ctx) {
+//   ctx.drawImage(
+//     this.sheet,
+//     this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize,
+//     this.x, this.y, this.tileSize, this.tileSize
+//   )
+// }
+
+}
 
 export class Wall extends GameObject {
   constructor(x, y) {
