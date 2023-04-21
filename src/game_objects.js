@@ -93,6 +93,7 @@ export class Tree extends GameObject {
 
   }
 }
+
 export class Stone extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -181,7 +182,7 @@ class AnimatedGameObject extends GameObject {
     this.dy = 0
   }
 
-  update() {
+  update() {+
     super.update()
     this.x = this.x + this.dx
     this.y = this.y + this.dy
