@@ -69,9 +69,9 @@ export class GameObject {
 
 export class Background extends GameObject {
   constructor(x, y) {
-    const ground = document.querySelector("#ground")
+    const ground = document.querySelector("#boden")
     super(x, y, {
-      sheet: ground,
+      sheet: boden,
       layer: "background",
       collisionTags: []
     })
@@ -80,7 +80,19 @@ export class Background extends GameObject {
     this.col = 0
   }
 }
+export class Tree extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["forest"]
+    })
+    this.row = 1
+    this.col = 1
 
+  }
+}
 export class Stone extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -121,6 +133,7 @@ export class Cave extends GameObject {
   }
 }
 
+
 export class FallingStone extends Stone {
   constructor(x, y) {
     super(x, y)
@@ -135,32 +148,30 @@ export class FallingStone extends Stone {
   
 }
 
-export class Tree extends GameObject {
-  constructor(x, y) {
-    const ground = document.querySelector("#ground")
-    super(x, y, {
-      sheet: ground,
-      layer: "world",
-      collisionTags: ["forest"]
-    })
-    this.row = 1
-    this.col = 1
-  }
-}
+
+
 
 export class Mushroom extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
     super(x, y, {
       sheet: ground,
-      layer: "item",
-      collisionTags: ["pickups"]
+      layer: "world",
+      collisionTags: ["world"]
     })
     this.row = 0
     this.col = 2
-
   }
 }
+
+  
+
+
+
+  
+
+
+
 
 class AnimatedGameObject extends GameObject {
   constructor(x, y, options) {
