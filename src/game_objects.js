@@ -107,7 +107,7 @@ export class Stone extends GameObject {
 }
 export class Turm extends GameObject{
 constructor(x,y){
-  const turm = document.querySelector("#turm")
+  const turm = document.querySelector("#turmgross")
   super(x,y,{
     sheet: turm,
     layer: "world",
@@ -115,7 +115,7 @@ constructor(x,y){
   })
   this.row  = 0
   this.col = 0
-  this.tileSize = 128
+  this.tileSize = 160
 }
 
 // draw(ctx) {
