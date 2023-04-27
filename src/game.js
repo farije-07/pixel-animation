@@ -72,6 +72,12 @@ export default class Game {
     elem.textContent= count + value
 
   }
+  static updateFlower(value) {
+    const elem = document.querySelector("#flower-counter")
+    let count = parseInt(elem.textContent)
+    elem.textContent= count + value
+
+  }
 
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
