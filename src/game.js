@@ -16,6 +16,7 @@ export default class Game {
   
   static running = false;
   static currentFrame = 0;
+  static countdown = null
 
   constructor() {
     this.tileSize = 32
@@ -43,7 +44,7 @@ export default class Game {
    */
   static start() {
     Game.running = true
-    setInterval(Game.countdown, 1000)
+    Game.countdown = setInterval(Game.countdown, 1000)
   }
 
   /**
