@@ -1,5 +1,5 @@
 import Game from "./game.js"
-import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Turm } from "./game_objects.js"
+import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Flower, Turm } from "./game_objects.js"
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -9,9 +9,13 @@ export default class Map {
   constructor(mapFile) {
     this._readMapFile(mapFile)
 
-    clearInterval(Game.countdown)
     
+    if (mapFile==="maps/map-02.txt") {
+      clearInterval(Game.countdown)
+      document.querySelector("#challenge").textContent = "&hearts; Challenge 2: Laufe durch den Labyrinth und sammle 10 Blumen &hearts;"
+    }
   }
+
 
   /**
    * Erstelle neue Spiel-Objekte an den jeweiligen Stellen.
@@ -27,6 +31,7 @@ export default class Map {
     if ( tileType === "p" ) { new Mushroom(x, y) }
     if ( tileType === "w" ) { new Wall(x, y) }
     if ( tileType === "h" ) { new Cave(x, y, 2) }
+    if ( tileType === "f" ) { new Flower(x, y, ) }
     if ( tileType === "P" ) { Game.player = new Player(x, y)}
     if ( tileType === "T")  {new Turm (x, y)}
     

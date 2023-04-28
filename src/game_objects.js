@@ -80,6 +80,7 @@ export class Background extends GameObject {
     this.col = 0
   }
 }
+
 export class Tree extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -93,6 +94,8 @@ export class Tree extends GameObject {
 
   }
 }
+
+
 export class Stone extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -186,7 +189,18 @@ export class Mushroom extends GameObject {
   }
 }
 
-  
+export class Flower extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["pickups"]
+    })
+    this.row = 0
+    this.col = 3
+  }
+}
 
 
 
