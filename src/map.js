@@ -8,7 +8,11 @@ import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Fl
 export default class Map {
   constructor(mapFile) {
     this._readMapFile(mapFile)
+    if (mapFile==="maps/map-02.txt") {
+      document.querySelector("#challenge").textContent = "&hearts; Challenge 2: Laufe durch den Labyrinth und sammle 10 Blumen &hearts;"
+    }
   }
+
 
   /**
    * Erstelle neue Spiel-Objekte an den jeweiligen Stellen.
