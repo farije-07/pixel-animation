@@ -80,6 +80,7 @@ export class Background extends GameObject {
     this.col = 0
   }
 }
+
 export class Tree extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
@@ -93,6 +94,8 @@ export class Tree extends GameObject {
 
   }
 }
+
+
 export class Stone extends GameObject {
   constructor(x, y) {
     const ground = document.querySelector("#ground")
