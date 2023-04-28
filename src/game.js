@@ -43,6 +43,7 @@ export default class Game {
    */
   static start() {
     Game.running = true
+    setInterval(Game.countdown, 1000)
   }
 
   /**
@@ -70,6 +71,12 @@ export default class Game {
     const elem = document.querySelector("#mushroom-counter")
     let count = parseInt(elem.textContent)
     elem.textContent= count + value
+
+  }
+  static countdown (){
+    const elem = document.querySelector("#count-down")
+    let count = parseInt(elem.textContent)
+    elem.textContent= count -1
 
   }
 
