@@ -8,6 +8,9 @@ import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Tu
 export default class Map {
   constructor(mapFile) {
     this._readMapFile(mapFile)
+
+    clearInterval(Game.countdown)
+    
   }
 
   /**
