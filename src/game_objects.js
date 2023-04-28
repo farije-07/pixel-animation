@@ -86,7 +86,7 @@ export class Tree extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["forest"]
+      collisionTags: ["forest", "pickups"]
     })
     this.row = 1
     this.col = 1
