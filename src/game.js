@@ -79,7 +79,7 @@ export default class Game {
     const elem = document.querySelector("#count-down")
     let count = parseInt(elem.textContent)
     if (count <= 0) {
-      elem.textContent = 20
+      elem.textContent = 120
       Game.loadMap("maps/map-01.txt")
     } else {
       elem.textContent= count -1
