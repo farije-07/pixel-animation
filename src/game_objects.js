@@ -245,4 +245,5 @@ export class Player extends AnimatedGameObject {
       this.row = 0
     }
   }
+  if 
 }
