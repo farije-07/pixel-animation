@@ -9,7 +9,7 @@ body {
 
 canvas {
     background-color:cadetblue;
-    width: min(90vh, 100vw);
+    height: 90vh;
 
 }
 

@@ -87,7 +87,7 @@ export class Tree extends GameObject {
     super(x, y, {
       sheet: ground,
       layer: "world",
-      collisionTags: ["forest"]
+      collisionTags: ["forest", "pickups"]
     })
     this.row = 1
     this.col = 1
@@ -107,6 +107,28 @@ export class Stone extends GameObject {
     this.row = 0
     this.col = 1
   }
+}
+export class Turm extends GameObject{
+constructor(x,y){
+  const turm = document.querySelector("#turmgross")
+  super(x,y,{
+    sheet: turm,
+    layer: "world",
+    collisionTags: ["world"]
+  })
+  this.row  = 0
+  this.col = 0
+  this.tileSize = 160
+}
+
+// draw(ctx) {
+//   ctx.drawImage(
+//     this.sheet,
+//     this.col * this.tileSize, this.row * this.tileSize, this.tileSize, this.tileSize,
+//     this.x, this.y, this.tileSize, this.tileSize
+//   )
+// }
+
 }
 
 export class Wall extends GameObject {

@@ -16,6 +16,7 @@ export default class Game {
   
   static running = false;
   static currentFrame = 0;
+  static countdown = null
 
   constructor() {
     this.tileSize = 32
@@ -43,6 +44,7 @@ export default class Game {
    */
   static start() {
     Game.running = true
+    Game.countdown = setInterval(Game.countdown, 1000)
   }
 
   /**
@@ -72,10 +74,16 @@ export default class Game {
     elem.textContent= count + value
 
   }
-  static updateFlower(value) {
-    const elem = document.querySelector("#flower-counter")
+
+  static countdown (){
+    const elem = document.querySelector("#count-down")
     let count = parseInt(elem.textContent)
-    elem.textContent= count + value
+    if (count <= 0) {
+      elem.textContent = 20
+      Game.loadMap("maps/map-01.txt")
+    } else {
+      elem.textContent= count -1
+    }
 
   }
 
