@@ -42,11 +42,9 @@ export default class Game {
    * Das Spiel wird gestartet indem die Animationsschleife
    * des Spiels aufgerufen wird.
    */
-  static start() {
-    Game.running = true
-    Game.countdown = setInterval(Game.countdown, 1000)
+  static start(){
+    Game.running= true 
   }
-
   /**
    * Pausiert das Spiel.
    * 
