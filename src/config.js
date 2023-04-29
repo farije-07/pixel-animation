@@ -6,10 +6,12 @@ const config = {
     "KeyA": function() { Game.player && Game.player.move("left")},
     "KeyS": function() { Game.player && Game.player.move("down")},
     "KeyD": function() { Game.player && Game.player.move("right")},
-    
-    
+    "Space": function() { Game.player.jump()},
 
-   
+
+
+
+
   }
 }
 

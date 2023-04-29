@@ -53,11 +53,11 @@ export class GameObject {
   }
 
   /**
-   * Berechne die Position und andere Eigenschaften des 
-   * Spiel-Objekts neu. Wie das gemacht wird, wird in den 
+   * Berechne die Position und andere Eigenschaften des
+   * Spiel-Objekts neu. Wie das gemacht wird, wird in den
    * verschieden Handlers angegeben. Ein Spiel-Objekt kann
    * z.B. einen Gravitations-Handler haben, dieser fügt dann
-   * Gravitation für dieses Spiel-Objekt hinzu und berechnet die 
+   * Gravitation für dieses Spiel-Objekt hinzu und berechnet die
    * y-Position des Spiel-Objekts neu.
    */
   update(){
@@ -108,6 +108,15 @@ export class Stone extends GameObject {
     this.col = 1
   }
 }
+
+export class JumpStone extends Stone {
+  constructor(x, y) {
+    super(x, y);
+    this.col = 4
+    this.row = 0
+  }
+}
+
 export class Turm extends GameObject{
 constructor(x,y){
   const turm = document.querySelector("#turmgross")
@@ -170,7 +179,7 @@ export class FallingStone extends Stone {
       new CollisionHandler()
     ])
   }
-  
+
 }
 
 
@@ -204,7 +213,7 @@ export class Flower extends GameObject {
 
 
 
-  
+
 
 
 
@@ -240,7 +249,7 @@ export class Player extends AnimatedGameObject {
     this.speed = 3
     this.handlers = new HandlerManager([
       new CollisionHandler(),
-      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 1})
+      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 1}),
     ])
   }
 
@@ -267,5 +276,45 @@ export class Player extends AnimatedGameObject {
       this.row = 0
     }
   }
-  if 
+}
+
+export class FlatPlayer extends AnimatedGameObject {
+  constructor(x, y) {
+    const img = document.querySelector("#character")
+    super(x, y, {
+      sheet: img,
+      layer: "player",
+      collisionTags: ["world", "pickups", "cave", "forest"]
+    })
+    this.row = 0
+    this.col = 0
+    this.speed = 3
+    this.handlers = new HandlerManager([
+      new CollisionHandler(),
+      new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 1}),
+      new GravityHandler({
+        jumpForce: -10,
+        maxGravity: 5,
+        gravityForce: 1 }
+      )
+    ])
+  }
+
+  jump() {
+    this.handlers.get(GravityHandler).jump(this)
+  }
+
+  update() {
+    super.update()
+  }
+
+  move(direction) {
+     if (direction === "left") {
+      this.dx = this.dx + (-1) * this.speed
+      this.row = 0
+    } else if (direction === "right") {
+      this.dx = this.dx + (1) * this.speed
+      this.row = 0
+    }
+  }
 }
