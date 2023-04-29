@@ -75,6 +75,18 @@ export default class Game {
 
   }
 
+  static countdown (){
+    const elem = document.querySelector("#count-down")
+    let count = parseInt(elem.textContent)
+    if (count <= 0) {
+      elem.textContent = 20
+      Game.loadMap("maps/map-01.txt")
+    } else {
+      elem.textContent= count -1
+    }
+
+  }
+
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
    * Die Positionen der Spiel-Objekte werden neu berechnet,
