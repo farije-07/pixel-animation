@@ -222,9 +222,41 @@ export class Player extends AnimatedGameObject {
     ])
   }
 
-  jump() {
-    this.handlers.get(GravityHandler).jump(this)
-  }
+    public class Player {
+    private int jumpHeight;
+    private int currentPosition;
+    
+    public Player() {
+    jumpHeight = 0;
+    currentPosition = 0;
+    }
+    
+    public void jump(int height) {
+    if (height > 0) {
+    System.out.println("Player jumps to a height of " + height + " units.");
+    currentPosition += height;
+    } else {
+    System.out.println("Invalid jump height. Height must be greater than 0.");
+    }
+    }
+    
+    public int getCurrentPosition() {
+    return currentPosition;
+    }
+    
+    public static void main(String[] args) {
+    Player player = new Player();
+    
+    player.jump(3);
+    System.out.println("Current position: " + player.getCurrentPosition());
+    
+    player.jump(5);
+    System.out.println("Current position: " + player.getCurrentPosition());
+    
+    player.jump(-2); // Invalid jump height
+    System.out.println("Current position: " + player.getCurrentPosition());
+    }
+    }
 
   update() {
     super.update()
