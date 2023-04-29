@@ -23,6 +23,7 @@ export default class Map {
 
     
     if (mapFile==="maps/map-02.txt") {
+      alert("Du hast es geschafft!")
       clearInterval(Game.countdown)
       document.querySelector("#challenge").textContent = "&hearts; Challenge 2: Laufe durch den Labyrinth und sammle 10 Blumen &hearts;"
     }

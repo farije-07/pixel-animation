@@ -16,7 +16,7 @@ export default class Game {
   
   static running = false;
   static currentFrame = 0;
-  static countdown = null
+
 
   constructor() {
     this.tileSize = 32
@@ -80,6 +80,7 @@ export default class Game {
     let count = parseInt(elem.textContent)
     if (count <= 0) {
       elem.textContent = 20
+      alert("Das Spiel ist vorbei!")
       Game.loadMap("maps/map-01.txt")
     } else {
       elem.textContent= count -1
