@@ -114,6 +114,7 @@ export class JumpStone extends Stone {
     super(x, y);
     this.col = 4
     this.row = 0
+    this.collisionTags = ["danger", "world"]
   }
 }
 

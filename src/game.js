@@ -74,13 +74,18 @@ export default class Game {
     elem.textContent= count + value
 
   }
+  static resetMushroom() {
+    const elem = document.querySelector("#mushroom-counter")
+    elem.textContent= 0
 
+  }
   static countdown (){
     const elem = document.querySelector("#count-down")
     let count = parseInt(elem.textContent)
     if (count <= 0) {
       elem.textContent = 20
       alert("Das Spiel ist vorbei!")
+      Game.resetMushroom()
       Game.loadMap("maps/map-01.txt")
     } else {
       elem.textContent= count -1

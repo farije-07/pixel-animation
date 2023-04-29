@@ -127,6 +127,13 @@ export class CollisionHandler {
    
     }
 
+    if (collidingObject.collisionTags.includes("danger")) {
+      
+        Game.updateMushroom(-1)
+        
+   
+    }
+
     if (collidingObject.collisionTags.includes("cave")) {
       if (collidingObject.level === 1) {
         Game.loadMap("maps/map-01.txt")
