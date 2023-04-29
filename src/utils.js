@@ -10,9 +10,6 @@ export function findAndRemoveFromList(list, element) {
 
 
 
-
-
-
 const elementsToRender = new Set()
 
 function watchElement(obj) {
