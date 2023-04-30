@@ -3,13 +3,13 @@ body {
     margin: 0;
     text-align: center;
 
-    background-color:rosybrown;
+    background-color:rgb(189, 223, 189);
 }
 
 
 canvas {
-    background-color:cadetblue;
-    height: 90vh;
+    background-color:rgb(165, 228, 152);
+    height: 100vh;
 
 }
 
