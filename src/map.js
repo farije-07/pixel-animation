@@ -9,6 +9,7 @@ import {
   DummyCave,
   Flower,
   Turm,
+  Drache,
   FlatPlayer, JumpStone, Cave
 } from "./game_objects.js"
 
@@ -51,6 +52,7 @@ export default class Map {
     if ( tileType === "P" ) { Game.player = new Player(x, y)}
     if ( tileType === "F" ) { Game.player = new FlatPlayer(x, y)}
     if ( tileType === "T")  {new Turm (x, y)}
+    if (tileType === "D")   { new Drache(x,y)}
   }
 
   /**

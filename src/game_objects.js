@@ -268,6 +268,7 @@ export class Player extends AnimatedGameObject {
     ])
   }
 
+
   jump() {
     this.handlers.get(GravityHandler).jump(this)
   }
@@ -331,5 +332,19 @@ export class FlatPlayer extends AnimatedGameObject {
       this.dx = this.dx + (1) * this.speed
       this.row = 0
     }
+  }
+}
+
+export class Drache extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#drache")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 0
+    this.tileSize = 32
   }
 }
