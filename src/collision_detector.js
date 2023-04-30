@@ -1,5 +1,14 @@
 import { CollisionHandler } from "./event_handler.js";
 
+
+export function addCollisionEntry(index, thisObject) {
+  if (CollisionDetector.xRay[index] && CollisionDetector.xRay[index].length > 0) {
+    CollisionDetector.xRay[index].push(thisObject)
+  } else {
+    CollisionDetector.xRay[index] = [thisObject]
+  }
+}
+
 /**
  * Diese Klasse beinhaltet Funktionen die verwendet werden um
  * Kollisionen zwischen Kacheln zu erkennen.
@@ -18,6 +27,11 @@ export default class CollisionDetector {
 
     }
 
+    static xRay = {}
+    static clearXRay() {
+        CollisionDetector.xRay = {}
+    }
+
     static clear() {
       CollisionDetector.layers = {
         world: [],
@@ -33,40 +47,27 @@ export default class CollisionDetector {
      * Wir "all" als layerName verwendet, werden Kollisionen auf allen 
      * Layern geprüft.
      */
-    static checkCollision(layerName){
-        if (layerName === "all") {
-            Object.entries(CollisionDetector.layers).forEach(([_, currentLayer]) => {
-                CollisionDetector.detectCollisionsInLayer(currentLayer)
-            })
-        } else {
-            CollisionDetector.detectCollisionsInLayer(CollisionDetector.layers[layerName])
-        }
-    }
-
-    /**
-     * Erkennt eine Kollision auf einem Layer.
-     * Wird eine Kollision erkannt, wir das GameObject welches eine 
-     * Kollision hat benachrichtigt. Diesem GameObjekt wird dabei mitgeteilt
-     * mit welchem anderen Objekt es zusammen eine Kollision hat.
-     * Gibt es eine Kollision, wird `false` zurückgegeben.
-     */
-    static detectCollisionsInLayer(currentLayer){
-        currentLayer.forEach(tile => {
-            const h1 = new Hitbox(tile);
-            currentLayer.forEach(other => {
-                if (tile === other) {
-                    return false
-                } else {
-                    const h2 = new Hitbox(other);
-                    const collision = CollisionDetector.hitboxOverlapping(h1, h2);
-                    if (collision && tile.handlers.get(CollisionHandler)) {
-                        tile.handlers.get(CollisionHandler)._handleEvents(tile, {other: other})
+    static checkCollision(){
+        const possibleCollisions = Object.values(CollisionDetector.xRay).filter((value) => {
+            return value.length > 1
+        })
+        Object.values(possibleCollisions).forEach((value) => {
+            value.forEach(tile => {
+                value.forEach(other => {
+                    if (tile === other) {
+                        return false
+                    } else {
+                        const h1 = new Hitbox(tile);
+                        const h2 = new Hitbox(other);
+                        const collision = CollisionDetector.hitboxOverlapping(h1, h2);
+                        if (collision && tile.handlers.get(CollisionHandler)) {
+                            tile.handlers.get(CollisionHandler)._handleEvents(tile, {other: other})
+                        }
                     }
-                }
+                })
             })
         })
     }
-
     /**
      * Prüft ob die Hitboxes von 2 Objekten eine Überschneidung haben.
      * @returns {boolean} Wenn die Hitboxes eine Überschneidung haben, wird `true` zurückgegeben. Ansonsten `false`.
@@ -75,9 +76,9 @@ export default class CollisionDetector {
         if ( h1.getRight() > h2.getLeft() && h1.getLeft() < h2.getRight()) {
             if ( h1.getBottom() > h2.getTop() && h1.getTop() < h2.getBottom() ) {
                 return true
-            }
         }
-        return false
+        }
+                return false
     }
     
 }
@@ -116,7 +117,8 @@ class Hitbox {
     constructor(tile) {
         this.x = tile.x
         this.y = tile.y
-        this.tileSize = tile.tileSize
+        this.tileWidth = tile.tileWidth
+        this.tileHeight = tile.tileHeight
     }
 
     getLeft() {
@@ -126,15 +128,15 @@ class Hitbox {
         return this.y
     }
     getRight() {
-        return this.x + this.tileSize
+        return this.x + this.tileWidth
     }
     getBottom() {
-        return this.y + this.tileSize
+        return this.y + this.tileHeight
     }
     getCenter() {
         return {
-            x: this.x + this.tileSize / 2,
-            y: this.y + this.tileSize / 2,
+            x: this.x + this.tileWidth / 2,
+            y: this.y + this.tileHeight / 2,
         }
     }
 }

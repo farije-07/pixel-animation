@@ -7,6 +7,32 @@ Das Spiel kann [hier](https://cedricgeissmann.github.io/pixel-animation) direkt 
 
 # Changes
 
+## v1.12
+
+- Objekte können nun unterschiedliche Höhe und Breite haben. Diese können mit `tileHeight` und `tileWidth` angegeben werden. Kann im `Player` nachgeschaut werden.
+
+## v1.11
+
+- Es kann nun ein Cooldown bei Aktionen die in `config.js` definiert werden, hinzugefügt werden.
+
+## v1.10
+
+- Das Spiel kann nun pausiert werden, und wieder gestartet.
+
+## v1.9
+
+- Handler für SpielObjekte sind intuitiver und können einfach zu Objekten hinzugefügt werden.
+- Objekte können *geworfen* werden, dafür gibt es einen `ProjectileHandler`.
+- CollisionTags werden nicht mehr auf dem SpielObjekt, sondern beim CollisionHandler definiert.
+
+## v1.8
+
+Schnelleres erkennen von Kollisionen. Es können nun viele Spielobjekte platziert werden, ohne dass das Spiel sehr langsam wird.
+
+## v1.7
+
+Es gibt einen Hintergrund, den man auf dem Spielfeld setzen kann. Der Hintergrund verschiebt sich mit dem Spieler.
+
 ## v1.6
 
 Es ist nun möglich mit mehreren Spielern zu spielen.

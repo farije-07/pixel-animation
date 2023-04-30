@@ -10,6 +10,8 @@ body {
 canvas {
     background-color:rgb(165, 228, 152);
     height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1503435980610-a51f3ddfee50?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9yZXN0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
+    width: min(70vh, 100vw);
 
 }
 
