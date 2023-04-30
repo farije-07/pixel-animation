@@ -1,5 +1,3 @@
-import Game from "./game.js"
-
 export default class Camera {
   constructor(game, offset = { x: 0, y: 0 }) {
     this.game = game
@@ -15,7 +13,7 @@ export default class Camera {
    */
   clearScreen() {
     const transform = this.game.ctx.getTransform()
-    this.game.ctx.clearRect(-transform.e, -transform.f, Game.canvas.width, Game.canvas.height);
+    this.game.ctx.clearRect(-transform.e, -transform.f, this.game.canvas.width, this.game.canvas.height);
   }
 
   /** 
@@ -40,8 +38,8 @@ export default class Camera {
    */
   centerCoordinate(x, y) {
     this.game.ctx.setTransform(1, 0, 0, 1,
-      (-x + this.offset.x) +  Game.canvas.width / 2,
-      (-y + this.offset.y) + Game.canvas.height / 2)
+      (-x + this.offset.x) + this.game.canvas.width/2,
+      (-y + this.offset.y) +this.game.canvas.height / 2)
   }
 
   /**
@@ -75,12 +73,6 @@ export default class Camera {
     }
     this.offset.x += this.interpolate.x
     this.offset.y += this.interpolate.y
-  }
-
-  static shiftBackground(value) {
-      const canvasStyle = document.querySelector("#canvas").style
-      const bgX = parseInt(canvasStyle.backgroundPositionX) || 0
-      canvasStyle.backgroundPositionX = `${bgX + value}px`
   }
     
 }

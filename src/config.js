@@ -1,5 +1,4 @@
 import Game from "./game.js"
-import { ShootingStone } from "./game_objects.js"
 
 const config = {
   "keys": {

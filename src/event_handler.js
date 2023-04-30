@@ -3,22 +3,6 @@ import { Mushroom, Player, Tree } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
-export function addGravity(gameObject, gravityOptions) {
-  gameObject.handlers.add(new GravityHandler(gravityOptions))
-}
-
-export function addAnimation(gameObject, animationOptions) {
-  gameObject.handlers.add(new AnimationHandler(animationOptions))
-}
-
-export function addCollision(gameObject, collisionOptions) {
-  gameObject.handlers.add(new CollisionHandler(collisionOptions))
-}
-
-export function addProjectile(gameObject, projectileOptions) {
-  gameObject.handlers.add(new ProjectileHandler(projectileOptions))
-}
-
 
 export default class InputHandler {
 
@@ -30,20 +14,15 @@ export default class InputHandler {
     window.onkeydown = (ev) => {InputHandler.events.add(ev.code)}
     window.onkeyup = (ev) => {InputHandler.events.delete(ev.code)}
     Object.entries(config["keys"]).forEach(([key, callback]) => {
-      if (typeof callback === "function") {
-        new Command(key, callback)
-      } else if (typeof callback === "object") {
-        new Command(key, callback.callback, callback.cooldown)
-      }
+      new Command(key, callback)
     })
   }
 
   static handleAllEvents() {
     InputHandler.events.forEach((ev) => {
       InputHandler.commands.forEach(command => {
-        if (command.key === ev && command.ready()) {
+        if (command.key === ev) {
           command.callback()
-          command.calledOnFrame = Game.currentFrame
         }
       })
     })
@@ -53,26 +32,10 @@ export default class InputHandler {
 
 
 class Command {
-  constructor(key, callback, cooldown = 0) {
+  constructor(key, callback) {
     this.key = key
     this.callback = callback
-    this.cooldown = cooldown
-    this.calledOnFrame = 0
     InputHandler.commands.push(this)
-  }
-
-  ready() {
-    return Game.currentFrame - this.calledOnFrame >= this.cooldown
-  }
-}
-
-export class ProjectileHandler {
-  constructor(options) {
-    this.speed = options.speed || 0
-  }
-
-  _handleEvents(gameObject) {
-    gameObject.x = gameObject.x + this.speed
   }
 }
 
@@ -122,10 +85,6 @@ export class HandlerManager {
 }
 
 export class CollisionHandler {
-  constructor(options = {collisionTags: []}) {
-    this.collisionTags = options.collisionTags
-  }
-
   _handleEvents(gameObject, options) {
     // Es soll nichts passieren wenn kein anderes Objekt gesetzt wird
     if (options == null) return
@@ -138,7 +97,7 @@ export class CollisionHandler {
     // Wenn das andere Objekt aus der Welt oder dem Wald ist,
     // soll eine Überschneidung vermieden werden, indem das
     // Objekt aus dem überschneidenden Objekt herausgedrückt wird.
-    if (matchCollisionTags(collidingObject, ["world", "forest"])) {
+    if (collidingObject.collisionTags.includes("world") || collidingObject.collisionTags.includes("forest")) {
       const pen = calculatePenetration(gameObject, collidingObject)
       if (Math.abs(pen.x) <= Math.abs(pen.y)) {
         gameObject.x = gameObject.x - pen.x
@@ -157,7 +116,7 @@ export class CollisionHandler {
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     
   
-    if (matchCollisionTags(collidingObject, ["pickups"])){
+    if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
       if (collidingObject instanceof Mushroom) {
         Game.updateMushroom(1)
@@ -168,40 +127,22 @@ export class CollisionHandler {
    
     }
 
-    if (matchCollisionTags(collidingObject, ["danger"])) {
+    if (collidingObject.collisionTags.includes("danger")) {
       
         Game.updateMushroom(-1)
         
    
     }
 
-    if (matchCollisionTags(collidingObject, ["cave"])){
+    if (collidingObject.collisionTags.includes("cave")) {
       if (collidingObject.level === 1) {
         Game.loadMap("maps/map-01.txt")
       } else if (collidingObject.level === 2) {
         Game.loadMap ("maps/map-02.txt")
-    }}
-
-    // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
-    if (matchCollisionTags(collidingObject, ["pickups"])) {
-      collidingObject.destroy()
     }
   }
 }
-
-function matchCollisionTags(collidingObject, tags) {
-  const colHandler = collidingObject.handlers.get(CollisionHandler)
-  if (colHandler != null) {
-    for (let tag of tags) {
-      if (colHandler.collisionTags.includes(tag) == true) {
-        return true
-      }
-    }
-  }
-  return false
 }
-
-
 export class AnimationHandler {
   constructor(options) {
     this.frameCounter = 0
@@ -214,8 +155,8 @@ export class AnimationHandler {
     if (gameObject.dx != 0 || gameObject.dy != 0) {
       this.frameCounter++
       if (this.frameCounter >= this.framesPerAnimation) {
-        gameObject.col += gameObject.tileWidth
-        if (gameObject.col >= this.numberOfFrames * gameObject.tileWidth) {
+        gameObject.col++
+        if (gameObject.col >= this.numberOfFrames) {
           gameObject.col = 0
         }
         this.frameCounter = 0

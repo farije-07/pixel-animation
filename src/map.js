@@ -1,6 +1,7 @@
 import Game from "./game.js"
 import {
   Background,
+  FallingStone,
   Mushroom,
   Player,
   Stone,
@@ -17,12 +18,7 @@ import {
  * an den Stellen die in der Karte angegeben sind.
  */
 export default class Map {
-  static width = 0
-  static height = 0
-
   constructor(mapFile) {
-    Map.width = 0
-    Map.height = 0
     this._readMapFile(mapFile)
 
     
@@ -41,6 +37,7 @@ export default class Map {
    * @param {string} tileType Der Buchstabe an der Stelle in der Karte.
    */
   addTilesToMap(x, y, tileType) {
+    new Background(x, y)
     if ( tileType === "s" ) { new Stone(x, y) }
     if ( tileType === "S" ) { new FallingStone(x, y) }
     if ( tileType === "j" ) { new JumpStone(x, y) }
@@ -69,8 +66,6 @@ export default class Map {
           let row = rows[y].split("")
           for (let x = 0; x < row.length; x++) {
             this.addTilesToMap(x, y, row[x])
-            Map.width = Math.max(Map.width, x)
-            Map.height = Math.max(Map.height, y)
           }
         }
       })
