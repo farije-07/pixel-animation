@@ -123,7 +123,7 @@ export class CollisionHandler {
       } else if (collidingObject instanceof Tree) {
         Game.updateMushroom(-1)
       }
-        
+       Game.playsound("") 
    
     }
 

@@ -46,6 +46,9 @@ export default class Game {
     Game.running = true
     Game.countdown = setInterval(Game.countdown, 1000)
   }
+  static playsound(filename) {
+    new Audio(filename).play()
+  }
 
   /**
    * Pausiert das Spiel.
