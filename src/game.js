@@ -28,7 +28,7 @@ export default class Game {
 
     new EventHandler()
 
-    Game.loadMap("maps/map-01.txt")
+    Game.loadMap(1)
 
     this.camera = new Camera(this)
 
@@ -63,11 +63,11 @@ export default class Game {
     Game.running = false
   }
 
-  static loadMap(mapfile) {
+  static loadMap(level) {
       TileRegistry.clear()
       CollisionDetector.clear()
       Game.player = null
-      Game.map = new Map(mapfile)
+      Game.map = new Map(level)
 
 
   }
@@ -89,7 +89,7 @@ export default class Game {
       elem.textContent = 20
       alert("Das Spiel ist vorbei!")
       Game.resetMushroom()
-      Game.loadMap("maps/map-01.txt")
+      Game.loadMap(1)
     } else {
       elem.textContent= count -1
     }
