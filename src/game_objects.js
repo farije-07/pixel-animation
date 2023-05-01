@@ -270,7 +270,7 @@ export class Player extends AnimatedGameObject {
 
 
   jump() {
-    this.handlers.get(GravityHandler).jump(this)
+   //this.handlers.get(GravityHandler).jump(this)
   }
 
   update() {
