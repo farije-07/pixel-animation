@@ -10,7 +10,7 @@ import {
   Flower,
   Turm,
   Drache,
-  FlatPlayer, JumpStone, Cave
+  FlatPlayer, JumpStone, Cave, Turm1, Turm2, Turm3, Turm4, Turm5, Turm6, Wolke
 } from "./game_objects.js"
 
 /**
@@ -51,8 +51,14 @@ export default class Map {
     if ( tileType === "f" ) { new Flower(x, y, ) }
     if ( tileType === "P" ) { Game.player = new Player(x, y)}
     if ( tileType === "F" ) { Game.player = new FlatPlayer(x, y)}
-    if ( tileType === "T")  {new Turm (x, y)}
     if (tileType === "D")   { new Drache(x,y)}
+    if (tileType === "1")   { new Turm1 (x,y)}
+    if (tileType === "2")   { new Turm2 (x,y)}
+    if (tileType === "3")   { new Turm3 (x,y)}
+    if (tileType === "4")   { new Turm4 (x,y)}
+    if (tileType === "5")   { new Turm5 (x,y)}
+    if (tileType === "6")   { new Turm6 (x,y)}
+    if (tileType === "W")   { new Wolke (x,y)}
   }
 
   /**

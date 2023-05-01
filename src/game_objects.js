@@ -348,3 +348,102 @@ export class Drache extends GameObject {
     this.tileSize = 32
   }
 }
+
+export class Turm1 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#turm")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 0
+    this.tileSize = 32
+  }
+}
+
+
+export class Turm2 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#turm")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 1
+    this.tileSize = 32
+  }
+}
+
+export class Turm3 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#turm")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 0
+    this.tileSize = 32
+  }
+}
+
+export class Turm4 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#turm")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 1
+    this.col = 1
+    this.tileSize = 32
+  }
+}
+
+export class Turm5 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#turm")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 2
+    this.col = 0
+    this.tileSize = 32
+  }
+}
+
+export class Turm6 extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#turm")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 2
+    this.col = 1
+    this.tileSize = 32
+  }
+}
+
+
+export class Wolke extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.col = 4
+    this.row = 1
+  }
+}
