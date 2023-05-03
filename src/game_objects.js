@@ -179,6 +179,41 @@ export class Flower extends GameObject {
     this.col = 3
   }
 }
+export class Wolke extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.col = 4
+    this.row = 1
+  }
+}
+
+export class JumpStone extends Stone {
+  constructor(x, y) {
+    super(x, y);
+    this.col = 4
+    this.row = 0
+    this.collisionTags = ["danger", "world"]
+  }
+}
+export class Turm extends GameObject{
+  constructor(x,y){
+    const turm = document.querySelector("#turmgross")
+    super(x,y,{
+      sheet: turm,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row  = 0
+    this.col = 0
+    this.tileSize = 160
+  }
+}
+
 
 
 
@@ -241,5 +276,18 @@ export class Player extends AnimatedGameObject {
       this.dx = this.dx + (1) * this.speed
       this.row = 0
     }
+  }
+}
+export class Drache extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#drache")
+    super(x, y, {
+      sheet: drache,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 0
+    this.tileSize = 32
   }
 }
