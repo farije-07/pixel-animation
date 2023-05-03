@@ -192,14 +192,7 @@ export class Wolke extends GameObject {
   }
 }
 
-export class JumpStone extends Stone {
-  constructor(x, y) {
-    super(x, y);
-    this.col = 4
-    this.row = 0
-    this.collisionTags = ["danger", "world"]
-  }
-}
+
 export class Turm extends GameObject{
   constructor(x,y){
     const turm = document.querySelector("#turmgross")
@@ -213,13 +206,6 @@ export class Turm extends GameObject{
     this.tileSize = 160
   }
 }
-
-
-
-
-  
-
-
 
 
 class AnimatedGameObject extends GameObject {
@@ -256,8 +242,7 @@ export class Player extends AnimatedGameObject {
       new AnimationHandler({ framesPerAnimation: 15, numberOfFrames: 1})
     ])
   }
-
- 
+  
   update() {
     super.update()
   }
@@ -288,6 +273,6 @@ export class Drache extends GameObject {
     })
     this.row = 0
     this.col = 0
-    this.tileSize = 32
+    this.tileSize = 62
   }
 }
