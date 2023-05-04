@@ -89,8 +89,8 @@ export class Tree extends GameObject {
       layer: "world",
       collisionTags: ["forest"]
     })
-    this.row = 1
-    this.col = 1
+    this.row = 0
+    this.col = 5
 
   }
 }
