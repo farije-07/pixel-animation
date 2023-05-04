@@ -134,6 +134,8 @@ export class CollisionHandler {
   }
 }
 }
+
+
 export class AnimationHandler {
   constructor(options) {
     this.frameCounter = 0

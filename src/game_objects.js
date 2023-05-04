@@ -274,5 +274,23 @@ export class Drache extends GameObject {
     this.row = 0
     this.col = 0
     this.tileSize = 62
+    this.speed = 5 // Geschwindigkeit des Drachen in der x-Achse
   }
+
+  update() {
+    // Aktualisiere die x-Position des Drachen
+    this.x += this.speed;
+
+    // Überprüfe, ob der Drachen das Spielfeld verlässt, und ändere seine Richtung gegebenenfalls
+    if (this.x < 0) {
+      this.x = 0;
+      this.speed = -this.speed;
+    } else if (this.x > canvas.width) {
+      this.x = canvas.width;
+      this.speed = -this.speed;
+    }
+
+    super.update();
+  }
+
 }
