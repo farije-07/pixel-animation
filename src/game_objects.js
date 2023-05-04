@@ -335,3 +335,16 @@ export class Prinzessin extends GameObject {
    
   }
 }
+
+export class FlowerBunt extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#ground")
+    super(x, y, {
+      sheet: ground,
+      layer: "world",
+      collisionTags: ["pickups"]
+    })
+    this.row = 0
+    this.col = 6
+  }
+}
