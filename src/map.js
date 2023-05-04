@@ -1,5 +1,9 @@
 import Game from "./game.js"
+<<<<<<< HEAD
 import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Flower, Drache, Prinzessin, Turm, Wolke, MushroomGiftig  } from "./game_objects.js"
+=======
+import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Flower, Drache, Blackstone } from "./game_objects.js"
+>>>>>>> veränderung1
 
 /**
  * Diese Klasse liest eine Kartendatei und erstellt die Spiel-Objekte
@@ -8,8 +12,10 @@ import { Background, FallingStone, Mushroom, Player, Stone, Tree, Wall, Cave, Fl
 
 export default class Map {
   constructor(mapFile) {
+    document.querySelector("#game-audio1").play()
     this._readMapFile(mapFile)
     if (mapFile==="maps/map-02.txt") {
+      
       document.querySelector("#challenge").textContent = "Challenge 2: Laufe durch den Labyrinth und sammle 10 Blume Chae "
      "Challenge 3"                                                     
     }

@@ -16,6 +16,7 @@ export default class Game {
   
   static running = false;
   static currentFrame = 0;
+  
 
   constructor() {
     this.tileSize = 32
@@ -35,6 +36,7 @@ export default class Game {
     window.requestAnimationFrame(this.gameLoop.bind(this))
   }
 
+
   /**
    * Startet das Spiel.
    * 
@@ -43,6 +45,7 @@ export default class Game {
    */
   static start() {
     Game.running = true
+    setInterval(Game.countdown, 1000)
   }
 
   /**
@@ -71,13 +74,45 @@ export default class Game {
     let count = parseInt(elem.textContent)
     elem.textContent= count + value
 
+    
+    
+  
   }
-  static updateFlower(value) {
+
+
+
+  static updateBlackstone(value) {
+  const elem = document.querySelector()
+  let count = parseInt(elem.textContent)
+
+  Game.loadMap("maps/map-01.txt")
+  
+  }
+
+
+
+
+   static updateFlower(value) {
     const elem = document.querySelector("#flower-counter")
     let count = parseInt(elem.textContent)
     elem.textContent= count + value
 
   }
+
+   
+  static countdown (){
+    const elem = document.querySelector("#count-down")
+    let count = parseInt(elem.textContent)
+    if (count <= 0){
+    elem.textContent= 90
+    Game.loadMap("maps/map-01.txt")
+  } else {
+    elem.textContent = count -1
+  }
+  
+
+}
+
   
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
