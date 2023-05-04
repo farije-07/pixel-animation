@@ -112,10 +112,20 @@ export class CollisionHandler {
         }
       }
     }
+  
 
     // Wenn das kollidierende Objekt aus Pickups ist, wird es entfernt.
     
-  
+
+
+
+
+    
+    
+
+    
+    
+    
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
       if (collidingObject instanceof Flower) {
@@ -123,10 +133,12 @@ export class CollisionHandler {
         Game.updateMushroom(1)
       } else if (collidingObject instanceof Mushroom)
       Game.updateMushroom(-1)
-        
-   
     }
 
+
+
+  
+    
     if (collidingObject.collisionTags.includes("cave")) {
       if (collidingObject.level === 1) {
         Game.loadMap("maps/map-01.txt")
@@ -134,7 +146,7 @@ export class CollisionHandler {
         Game.loadMap ("maps/map-02.txt")
     }
   }
-}
+  }
 }
 
 
@@ -160,3 +172,4 @@ export class AnimationHandler {
 
   }
 }
+

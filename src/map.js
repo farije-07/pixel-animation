@@ -10,8 +10,8 @@ export default class Map {
   constructor(mapFile) {
     this._readMapFile(mapFile)
     if (mapFile==="maps/map-02.txt") {
-      document.querySelector("#challenge").textContent = "Challenge 2: Laufe durch den Labyrinth und sammle 10 Blume Chae "
-     "Challenge 3"                                                     
+      document.querySelector("#challenge").textContent = "Challenge 2: Laufe durch den Labyrinth! Challenge 3: Nehme auf die Drachen acht! Challenge 4: Suche die Prinzessin! "
+                                                      
     }
 
     
