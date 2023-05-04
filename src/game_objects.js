@@ -293,4 +293,18 @@ export class Drache extends GameObject {
     super.update();
   }
 
+
+}
+export class Prinzessin extends GameObject {
+  constructor(x, y) {
+    const ground = document.querySelector("#prinzessin")
+    super(x, y, {
+      sheet: prinzessin,
+      layer: "world",
+      collisionTags: ["world"]
+    })
+    this.row = 0
+    this.col = 0
+   
+  }
 }
