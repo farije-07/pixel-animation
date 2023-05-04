@@ -6,7 +6,7 @@ s....ttt.t
 s..B..ttpp
 p......t.p
 spp....tpp
-s........p
+s.pp.....p
 ps.......t
 pps.......
 s..ss..P..
