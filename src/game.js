@@ -120,7 +120,7 @@ export default class Game {
    * die Kamera wird korrekt ausgerichtet und die 
    * Spiel-Objekte werden neu gezeichnet.
    */
-  gameLoop() { /* ist dafür da, dass das spiel geladen wird, zeichen der Elemente werden gemacht */
+  gameLoop() {
 
     Game.currentFrame++
     
@@ -139,6 +139,5 @@ export default class Game {
     if (Game.running === true) {
       window.requestAnimationFrame(this.gameLoop.bind(this))
     }
-    document.querySelector("#game-audio1").play()
   }
 }
