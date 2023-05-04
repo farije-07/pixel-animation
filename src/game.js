@@ -78,7 +78,7 @@ export default class Game {
     elem.textContent= count + value
 
   }
-
+  
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
    * Die Positionen der Spiel-Objekte werden neu berechnet,
