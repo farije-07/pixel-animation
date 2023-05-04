@@ -43,6 +43,7 @@ export default class Game {
    */
   static start() {
     Game.running = true
+    setInterval(Game.countdown,1000)
   }
 
   /**

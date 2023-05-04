@@ -122,7 +122,7 @@ export class CollisionHandler {
 
         Game.updateMushroom(1)
       } else if (collidingObject instanceof Mushroom)
-      Game.updateMushroom(1)
+      Game.updateMushroom(-1)
         
    
     }
