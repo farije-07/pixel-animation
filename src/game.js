@@ -79,6 +79,7 @@ export default class Game {
 
   }
   
+  
   /**
    * Berechnet jeweils das nächste Frame für das Spiel.
    * Die Positionen der Spiel-Objekte werden neu berechnet,
