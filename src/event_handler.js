@@ -128,9 +128,9 @@ export class CollisionHandler {
     
     if (collidingObject.collisionTags.includes("pickups")) {
       collidingObject.destroy()
-      if (collidingObject instanceof Flower) {
-
-        Game.updateMushroom(1)
+      if (collidingObject instanceof Flower){     
+        
+       Game.updateMushroom(1)
       } else if (collidingObject instanceof Mushroom)
       Game.updateMushroom(-1)
     }
