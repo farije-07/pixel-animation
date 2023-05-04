@@ -1,5 +1,5 @@
 import { calculatePenetration } from "./collision_detector.js"
-import { Flower, Mushroom, Player } from "./game_objects.js"
+import { Flower, FlowerBunt, Mushroom, MushroomGiftig, Player } from "./game_objects.js"
 import Game from "./game.js"
 import config from "./config.js"
 
@@ -135,6 +135,18 @@ export class CollisionHandler {
       Game.updateMushroom(-1)
     }
 
+    if(collidingObject.collisionTags.includes("pickups")){
+      collidingObject.destroy()
+      if (collidingObject instanceof FlowerBunt){
+        Game.updateMushroom(-2)
+      }
+    }
+if (collidingObject.collisionTags.includes("pickups")){
+  collidingObject.destroy()
+  if (collidingObject instanceof MushroomGiftig){
+    Game.updateMushroom(2)
+  }
+}
 
 
   

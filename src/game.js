@@ -74,18 +74,22 @@ export default class Game {
     let count = parseInt(elem.textContent)
     elem.textContent= count + value
 
-    
-    
   
   }
 
+ static updateFlowerbunt(value) {
+    const elem = document.querySelector("#flowerbunt-counter")
+    let count = parseInt(elem.textContent)
+    elem.textContent= count + value
 
+  
+  }
 
-  static updateBlackstone(value) {
-  const elem = document.querySelector()
-  let count = parseInt(elem.textContent)
+  static updateMushroomgiftig(value) {
+    const elem = document.querySelector("#mushroomgiftig-counter")
+    let count = parseInt(elem.textContent)
+    elem.textContent= count + value
 
-  Game.loadMap("maps/map-01.txt")
   
   }
 

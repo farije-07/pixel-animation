@@ -42,7 +42,7 @@ export default class Map {
     if ( tileType === "g" ) { new Turm(x, y) }
     if ( tileType === "W" ) { new Wolke(x, y) }
     if ( tileType === "G" ) { new MushroomGiftig(x, y) }
-    if ( tileType === "G" ) { new FlowerBunt(x, y) }
+    if ( tileType === "R" ) { new FlowerBunt(x, y) }
 
 
    
