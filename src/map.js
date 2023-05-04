@@ -11,7 +11,7 @@ export default class Map {
     document.querySelector("#game-audio1").play()
     this._readMapFile(mapFile)
     if (mapFile==="maps/map-02.txt") {
-      document.querySelector("#challenge").textContent = "Challenge 2: Laufe durch den Labyrinth! Challenge 3: Nehme auf die Drachen acht! Challenge 4: Suche die Prinzessin! "
+      document.querySelector("#challenge").textContent = "Challenge 2: Laufe durch den Labyrinth! Challenge 3: Nehme acht auf die Drachen Challenge 4: Suche die Prinzessin! "
                                                       
     }
 
